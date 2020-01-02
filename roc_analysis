@@ -1,0 +1,25 @@
+install.packages("ROCR")
+library("ROCR")
+setwd("J:/rko/supermarket_vrvsmonitor")
+dir()
+data <- read.csv("adela_supermarket_summary_statistics .csv", sep = ";", header = TRUE, stringsAsFactors = FALSE)
+?read.csv
+str(data)
+class(data$AVLT...deficit)
+
+pred <- prediction(data$Error_7, data$AVLT...deficit)
+perf <- performance (pred, "tpr", "fpr")
+plot <- plot(perf, colorize = TRUE)
+
+
+pred2 <- prediction(data$Error_7, data$AVLTDEL...deficit)
+perf2 <- performance(pred2, "tpr", "fpr")
+plot(perf2, colorize = TRUE)
+
+pred3 <- prediction(data$Error_9, data$AVLTDEL...deficit)
+perf3 <- performance(pred3, "tpr", "fpr")
+plot(perf3, colorize = TRUE)
+
+pred4 <- prediction(data$Error_7, data$AVLTDEL...deficit)
+perf4 <- performance(pred4, "tpr", "fpr")
+plot(perf4, colorize = TRUE)
